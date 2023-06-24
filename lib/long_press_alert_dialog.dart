@@ -213,9 +213,11 @@ class _LongPressAlertDialogState extends State<LongPressAlertDialog> {
     return ListTile(
       title: const Text("Copy address link"),
       onTap: () {
+        /// [widget.hitTestResult.extra.toString()] - converted type [String?] to String by adding the function toString() which changed the type to [String] and resolved the error.
         Clipboard.setData(ClipboardData(
-            text: widget.requestFocusNodeHrefResult?.url.toString() ??
-                widget.hitTestResult.extra));
+          text: widget.requestFocusNodeHrefResult?.url.toString() ??
+              widget.hitTestResult.extra.toString(),
+        ));
         Navigator.pop(context);
       },
     );
@@ -223,9 +225,9 @@ class _LongPressAlertDialogState extends State<LongPressAlertDialog> {
 
   Widget _buildShareLink() {
     return ListTile(
-      title: Row(
+      title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Text("Share link"),
             Padding(
               padding: EdgeInsets.only(right: 12.5),
@@ -295,9 +297,9 @@ class _LongPressAlertDialogState extends State<LongPressAlertDialog> {
 
   Widget _buildShareImage() {
     return ListTile(
-      title: Row(
+      title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children: [
             Text("Share image"),
             Padding(
               padding: EdgeInsets.only(right: 12.5),

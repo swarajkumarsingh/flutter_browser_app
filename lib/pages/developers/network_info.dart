@@ -149,8 +149,9 @@ class _NetworkInfoState extends State<NetworkInfo> {
               return Row(children: <Widget>[
                 InkWell(
                     onTap: () {
+                      /// [loadedResoruce.url.toString()] - converted type [String?] to String by adding the function toString() which changed the type to [String] and resolved the error.
                       Clipboard.setData(
-                          ClipboardData(text: loadedResoruce.url?.toString()));
+                          ClipboardData(text: loadedResoruce.url.toString()));
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(

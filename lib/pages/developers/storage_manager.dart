@@ -159,8 +159,9 @@ class _StorageManagerState extends State<StorageManager> {
                 DataCell(IconButton(
                   icon: const Icon(Icons.cancel),
                   onPressed: () async {
-                    await _cookieManager.deleteCookie(url: url, name: cookie.name);
-                    setState(() { });
+                    await _cookieManager.deleteCookie(
+                        url: url, name: cookie.name);
+                    setState(() {});
                   },
                 ))
               ]);
@@ -659,8 +660,7 @@ class _StorageManagerState extends State<StorageManager> {
           selector: (context, webViewModel) => webViewModel.url!,
           builder: (context, url, child) {
             return FutureBuilder(
-              future: _webStorageManager
-                  .getQuotaForOrigin(origin: url.origin),
+              future: _webStorageManager.getQuotaForOrigin(origin: url.origin),
               builder: (context, snapshot) {
                 return Text(snapshot.hasData ? snapshot.data.toString() : "");
               },
@@ -674,8 +674,8 @@ class _StorageManagerState extends State<StorageManager> {
             return ListTile(
               title: const Text("Usage"),
               subtitle: FutureBuilder(
-                future: _webStorageManager
-                    .getUsageForOrigin(origin: url.origin),
+                future:
+                    _webStorageManager.getUsageForOrigin(origin: url.origin),
                 builder: (context, snapshot) {
                   return Text(snapshot.hasData ? snapshot.data.toString() : "");
                 },
@@ -683,8 +683,7 @@ class _StorageManagerState extends State<StorageManager> {
               trailing: IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () async {
-                  await _webStorageManager
-                      .deleteOrigin(origin: url.origin);
+                  await _webStorageManager.deleteOrigin(origin: url.origin);
                   setState(() {});
                 },
               ),
@@ -706,8 +705,8 @@ class _StorageManagerState extends State<StorageManager> {
 
   Widget _buildIOSWebStorageExpansionTile(BoxConstraints constraints) {
     return FutureBuilder(
-      future: _webStorageManager
-          .fetchDataRecords(dataTypes: WebsiteDataType.ALL),
+      future:
+          _webStorageManager.fetchDataRecords(dataTypes: WebsiteDataType.ALL),
       builder: (context, snapshot) {
         List<WebsiteDataRecord> dataRecords = snapshot.hasData
             ? (snapshot.data as List<WebsiteDataRecord>)
@@ -726,7 +725,9 @@ class _StorageManagerState extends State<StorageManager> {
                     style: textStyle, softWrap: true),
               ),
               onTap: () {
-                Clipboard.setData(ClipboardData(text: dataRecord.displayName));
+                /// [dataRecord.displayName.toString()] - converted type [String?] to String by adding the function toString() which changed the type to [String] and resolved the error.
+                Clipboard.setData(
+                    ClipboardData(text: dataRecord.displayName.toString()));
               },
             ),
             DataCell(
@@ -851,8 +852,9 @@ class _StorageManagerState extends State<StorageManager> {
                         style: textStyle, softWrap: true),
                   ),
                   onTap: () {
-                    Clipboard.setData(
-                        ClipboardData(text: httpAuthCredential.username));
+                    /// [httpAuthCredential.username.toString()] - converted type [String?] to String by adding the function toString() which changed the type to [String] and resolved the error.
+                    Clipboard.setData(ClipboardData(
+                        text: httpAuthCredential.username.toString()));
                   },
                 ),
                 DataCell(
@@ -862,8 +864,9 @@ class _StorageManagerState extends State<StorageManager> {
                         style: textStyle, softWrap: true),
                   ),
                   onTap: () {
-                    Clipboard.setData(
-                        ClipboardData(text: httpAuthCredential.password));
+                    /// [httpAuthCredential.password.toString()] - converted type [String?] to String by adding the function toString() which changed the type to [String] and resolved the error.
+                    Clipboard.setData(ClipboardData(
+                        text: httpAuthCredential.password.toString()));
                   },
                 ),
                 DataCell(IconButton(
